@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>For You 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="second.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .love-container {
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(255, 105, 135, 0.4);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #d6336c;
+        }
+
+        .letter-box {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            color: #444;
+            line-height: 1.6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .photo {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+
+        .photo img:hover {
+            transform: scale(1.05);
+        }
+
+        .video-wrapper {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            max-height: 400px;
+            border-radius: 20px;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(255, 105, 135, 0.4);
+        }
+
+        .music-btn {
+            margin-bottom: 30px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff6b9a, #ff1f6b);
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 105, 135, 0.5);
+        }
+
+        .music-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(255, 105, 135, 0.7);
+        }
+
+        .valentine-question {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .valentine-question p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff1f6b;
+            margin-bottom: 15px;
+        }
+
+        .valentine-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6b9a, #ff1f6b);
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .valentine-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 31, 107, 0.4);
+        }
+
+        /* Popup overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: popupShow 0.3s ease-out;
+        }
+
+        @keyframes popupShow {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #ff6b9a;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: #ff1f6b;
+        }
+
+        .popup-content video {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="love-container">
+
+        <!-- Play Music Button -->
+        <button id="playMusicBtn" class="music-btn">🎵 Play Our Song 💕</button>
+
+        <!-- Main Video at Top -->
+        <div class="video-wrapper">
+            <video id="mainVideo" controls muted>
+                <source src="mp4/Lovey.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <audio id="bgMusic" loop>
+            <source src="mp3/The Book of Life- I Love You Too Much Clip (HD).mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Letter -->
+        <h1>To My Favorite Person 💖</h1>
+        <div class="letter-box">
+            <p>
+               HI LOVEYYY! Sorry for late invitation hehe! Nawa mapatawad mo me huhuhu.
+               Before anything else, I just want to say thank you for being the best girlfriend ever!!!
+               You have been so kind, caring, and understanding. I am so lucky to have you in my life. <br>
+                You make me a better person and I am grateful for every moment we spend together. 
+                Doing that edit also made me realize that we have more than just videos. <br>
+                We had memories that we can talk about and laugh about. We had moments that we can cherish forever. <br>
+
+                You are one of a kind. I can not put into words how greatful I am to have the privelege to be loved and be able to love you back.
+                Everything about you is worth to risk it all, and worth fighting for. I am thankful for the way you exists. <br>
+
+                Thank you for always putting a smile on my face and making my life so much lighter. <br> <br>
+
+                Also know that nothing can change how I feel about you. I will always be your number one fan, your biggest supporter, and your loving boyfriend. huhuhu
+                Dapat Invitation lang to, pero naging love letter na. Huhuhu.
+                <br>
+
+                Last na po hehe, I love you too much, to live without you loving me back. <br>
+
+                Always know na Valentine's man or not, I always love you, I may not be that good with words but I will always try to show you how much I care. <br>
+                You will always be my Valentine, not just today but for a lifetime. <br>
+                But the question is, Huhuhu. <br>
+            </p>
+
+            <!-- Valentine Question -->
+            <div class="valentine-question">
+                <p>💖 Will you be my Valentine? 💖</p>
+                <button id="yesBtn" class="valentine-btn">Yes 💕</button>
+                <button id="noBtn" class="valentine-btn">No 😢</button>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="gallery">
+            <div class="photo"><img src="us/0d86ed32-1d9d-4f39-b4c6-89ddcc68a1b8.jpg" alt="Us 1"></div>
+            <div class="photo"><img src="us/333e11f9-f4b7-4c78-9bdd-917a0cb8d85b.jpg" alt="Us 2"></div>
+            <div class="photo"><img src="us/52de4084-e77b-42b0-b00d-a58a3eba5fb6.jpg" alt="Us 3"></div>
+        </div>
+
+    </div>
+
+    <!-- Popups -->
+    <div class="popup-overlay" id="popupYes">
+        <div class="popup-content">
+            <button class="close-btn" id="closeYes">&times;</button>
+            <h2>💖 YEYYYY YOU SAID YES! SEND THIS TO ME! 💕</h2>
+            <video id="videoYes" controls>
+                <source src="mp4/happy happy happy cat original meme.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popupNo">
+        <div class="popup-content">
+            <button class="close-btn" id="closeNo">&times;</button>
+            <h2>😢 Iyak na lang me magdamag 😢</h2>
+            <video id="videoNo" controls>
+                <source src="mp4/Crying cat meme.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <script>
+        // Get all media elements
+        const music = document.getElementById("bgMusic");
+        const mainVideo = document.getElementById("mainVideo");
+        const btn = document.getElementById("playMusicBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const popupYes = document.getElementById("popupYes");
+        const popupNo = document.getElementById("popupNo");
+        const closeYes = document.getElementById("closeYes");
+        const closeNo = document.getElementById("closeNo");
+        const videoYes = document.getElementById("videoYes");
+        const videoNo = document.getElementById("videoNo");
+
+        let isPlaying = false;
+
+        // Music toggle
+        btn.addEventListener("click", () => {
+            if (!isPlaying) {
+                music.play();
+                isPlaying = true;
+                btn.innerHTML = "🎵 Stop Music 💖";
+                btn.style.background = "#ff1f6b";
+            } else {
+                music.pause();
+                isPlaying = false;
+                btn.innerHTML = "🎵 Play Our Song 💕";
+                btn.style.background = "linear-gradient(135deg, #ff6b9a, #ff1f6b)";
+            }
+        });
+
+        // Pause background music when main video plays
+        
+
+        // Show Yes popup
+        yesBtn.addEventListener("click", () => {
+            // Pause background music and main video
+            music.pause();
+            mainVideo.pause();
+            
+            popupYes.style.display = "flex";
+            videoYes.currentTime = 0; // Reset to start
+            videoYes.play();
+        });
+
+        // Close Yes popup
+        closeYes.addEventListener("click", () => {
+            popupYes.style.display = "none";
+            videoYes.pause();
+            videoYes.currentTime = 0;
+            
+            // Resume background music if it was playing
+            if (isPlaying) {
+                music.play();
+            }
+        });
+
+        // Show No popup
+        noBtn.addEventListener("click", () => {
+            // Pause background music and main video
+            music.pause();
+            mainVideo.pause();
+            
+            popupNo.style.display = "flex";
+            videoNo.currentTime = 0; // Reset to start
+            videoNo.play();
+        });
+
+        // Close No popup
+        closeNo.addEventListener("click", () => {
+            popupNo.style.display = "none";
+            videoNo.pause();
+            videoNo.currentTime = 0;
+            
+            // Resume background music if it was playing
+            if (isPlaying) {
+                music.play();
+            }
+        });
+
+        // Close popup when clicking outside
+        popupYes.addEventListener("click", (e) => {
+            if (e.target === popupYes) {
+                closeYes.click();
+            }
+        });
+
+        popupNo.addEventListener("click", (e) => {
+            if (e.target === popupNo) {
+                closeNo.click();
+            }
+        });
+
+        // No button dodge
+        noBtn.addEventListener("mousemove", (e) => {
+            const rect = noBtn.getBoundingClientRect();
+            const offset = 50;
+            const container = document.querySelector(".valentine-question");
+            const containerRect = container.getBoundingClientRect();
+            let left = rect.left - containerRect.left;
+            let top = rect.top - containerRect.top;
+            const cursorX = e.clientX - containerRect.left;
+            const cursorY = e.clientY - containerRect.top;
+            if (cursorX > left && cursorX < left + rect.width &&
+                cursorY > top && cursorY < top + rect.height) {
+                left += (cursorX < left + rect.width / 2) ? offset : -offset;
+                top += (cursorY < top + rect.height / 2) ? offset : -offset;
+                left = Math.max(0, Math.min(left, containerRect.width - rect.width));
+                top = Math.max(0, Math.min(top, containerRect.height - rect.height));
+                noBtn.style.position = "absolute";
+                noBtn.style.left = left + "px";
+                noBtn.style.top = top + "px";
+            }
+        });
+    </script>
+</body>
+
+</html>
